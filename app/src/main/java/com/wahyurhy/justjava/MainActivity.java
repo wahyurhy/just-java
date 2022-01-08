@@ -10,7 +10,6 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
     int quantity = 0;
-    String priceMessage = "Thank You!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
         if (quantity == 0) {
             displayMessage("Sorry?");
         } else {
-            displayPrice(quantity * 5);
+            String priceMessage = "Total: $" + (quantity * 5) + "\nThank you!";
+//            displayPrice(quantity * 5);
             displayMessage(priceMessage);
         }
     }
@@ -32,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
     }
 
-    public void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-    }
+//    public void displayPrice(int number) {
+//        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+//        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+//    }
 
     public void displayMessage(String message) {
         TextView messageTextView = (TextView) findViewById(R.id.message);

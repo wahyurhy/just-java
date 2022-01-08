@@ -57,15 +57,15 @@
         android:text="@string/price"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/price_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/price_text_view"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/price_text_view"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="@string/price_text_view"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="16sp" />-->
 
     <TextView
         android:layout_width="wrap_content"
@@ -74,7 +74,8 @@
         android:id="@+id/message"
         android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textSize="16sp"/>
 
     <Button
         android:layout_width="wrap_content"
