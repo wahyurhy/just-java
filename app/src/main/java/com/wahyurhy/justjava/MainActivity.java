@@ -2,14 +2,17 @@ package com.wahyurhy.justjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    String name = "Wahyu Rahayu";
-    int quantity = 0;
+    int quantity = 1;
     int price = 5;
 
     @Override
@@ -19,17 +22,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view) {
+        closeKeyboard();
+        EditText nameEditText = findViewById(R.id.name_edit_text);
+        String name = nameEditText.getText().toString();
+
         CheckBox whippedCreamCheckBox = findViewById(R.id.whipped_cream_checkbox);
         boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
         CheckBox chocolateCheckBox = findViewById(R.id.chocolate_checkbox);
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
-        if (quantity == 0) {
-            displayMessage("Sorry?");
-        } else {
-            String message = createOrderSummary(quantity, hasWhippedCream, hasChocolate);
-            displayMessage(message);
-        }
+        String message = createOrderSummary(name, quantity, hasWhippedCream, hasChocolate);
+        displayMessage(message);
     }
 
     private void displayQuantity(int numberOfCoffees) {
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         return total;
     }
 
-    private String createOrderSummary(int quantity, boolean addWhippedCream, boolean addChocolate) {
+    private String createOrderSummary(String name, int quantity, boolean addWhippedCream, boolean addChocolate) {
         String priceMessage = "Name: " + name;
         priceMessage += "\nAdd whipped cream? " + addWhippedCream;
         priceMessage += "\nAdd chocolate? " + addChocolate;
@@ -64,16 +67,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void increment(View view) {
+        closeKeyboard();
+        if (quantity == 100) {
+            Toast.makeText(this, "You cannot have more than 100 coffees", Toast.LENGTH_SHORT).show();
+            return;
+        }
         quantity = quantity + 1;
         displayQuantity(quantity);
     }
 
     public void decrement(View view) {
-        if (quantity <= 0) {
-            displayQuantity(0);
-        } else {
-            quantity = quantity - 1;
-            displayQuantity(quantity);
+        closeKeyboard();
+        if (quantity == 1) {
+            Toast.makeText(this, "You cannot have less than 1 coffee", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        quantity = quantity - 1;
+        displayQuantity(quantity);
+    }
+
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
 }
