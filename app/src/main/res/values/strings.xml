@@ -1,8 +1,8 @@
-<resources>
-    <string name="app_name">Just Java</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name" translatable="false">Just Java</string>
     <string name="quantity">QUANTITY</string>
-    <string name="quantity_text_view">1</string>
-    <string name="btn_order_text_view">ORDER</string>
+    <string name="quantity_text_view" translatable="false">1</string>
+    <string name="btn_order_text_view" translatable="false">ORDER</string>
     <string name="order_summary">ORDER SUMMARY</string>
     <string name="price_text_view">$0</string>
     <string name="btn_plus">+</string>
@@ -10,4 +10,13 @@
     <string name="toppings">TOPPINGS</string>
     <string name="chocolate">Chocolate</string>
     <string name="whipped_cream">Whipped cream</string>
+    <string name="hint_name">Name</string>
+
+    <string name="thank_you">Thank you!</string>
+
+    <string name="order_summary_name">Name: <xliff:g id="name" example="Wahyu">%s</xliff:g></string>
+    <string name="order_summary_whipped_cream">Add whipped cream? <xliff:g id="addWhippedCream" example="Add whipped cream">%b</xliff:g></string>
+    <string name="order_summary_chocolate">Add chocolate? <xliff:g id="addChocolate" example="chocolate">%b</xliff:g></string>
+    <string name="order_summary_quantity">Quantity: <xliff:g id="quantity" example="quantity">%d</xliff:g></string>
+    <string name="order_summary_total">Total: $<xliff:g id="total">%d</xliff:g></string>
 </resources>

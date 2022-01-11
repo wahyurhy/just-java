@@ -3,6 +3,8 @@ package com.wahyurhy.justjava;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -32,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
         boolean hasChocolate = chocolateCheckBox.isChecked();
 
         String message = createOrderSummary(name, quantity, hasWhippedCream, hasChocolate);
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + name);
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+
         displayMessage(message);
     }
 
@@ -52,12 +63,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String createOrderSummary(String name, int quantity, boolean addWhippedCream, boolean addChocolate) {
-        String priceMessage = "Name: " + name;
-        priceMessage += "\nAdd whipped cream? " + addWhippedCream;
-        priceMessage += "\nAdd chocolate? " + addChocolate;
-        priceMessage += "\nQuantity: " + quantity;
-        priceMessage += "\nTotal: $" + calculatePrice(price, addWhippedCream, addChocolate);
-        priceMessage += "\nThank you!";
+        int total = calculatePrice(price, addWhippedCream, addChocolate);
+        String priceMessage = getString(R.string.order_summary_name, name);
+        priceMessage += "\n" + getString(R.string.order_summary_whipped_cream, addWhippedCream);
+        priceMessage += "\n" + getString(R.string.order_summary_chocolate, addChocolate);
+        priceMessage += "\n" + getString(R.string.order_summary_quantity, quantity);
+        priceMessage += "\n" + getString(R.string.order_summary_total, total);
+        priceMessage += "\n" + getString(R.string.thank_you);
         return priceMessage;
     }
 
