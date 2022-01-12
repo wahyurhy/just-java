@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
-
-        displayMessage(message);
     }
 
     private void displayQuantity(int numberOfCoffees) {
@@ -71,11 +69,6 @@ public class MainActivity extends AppCompatActivity {
         priceMessage += "\n" + getString(R.string.order_summary_total, total);
         priceMessage += "\n" + getString(R.string.thank_you);
         return priceMessage;
-    }
-
-    public void displayMessage(String message) {
-        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
     }
 
     public void increment(View view) {
